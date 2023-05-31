@@ -14,7 +14,7 @@ country = df['country']
 app.layout = html.Div([
     html.Div(children='Hello World'),
     dash_table.DataTable(data=df.to_dict('records'), page_size=10),
-    dcc.Graph(figure=px.histogram(df, x='continent', y='pop',histfunc='avg'))
+    dcc.Graph(figure=px.histogram(df, x='continent', y='pop', histfunc='avg'))
 ])
 
 if __name__ == '__main__':
