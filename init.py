@@ -4,25 +4,21 @@ import plotly.express as px
 import requests
 
 # Getting denuncias from localhost and transforming to dataframe
-get_denuncias = requests.get("http://localhost:8080/denuncia")
-df_denuncias = pd.DataFrame()
-if get_denuncias.status_code == 200:
-    denuncias = get_denuncias.json()
-    denuncias_list = [denuncia for denuncia in denuncias]
-    df_denuncias = pd.DataFrame(denuncias_list)
-
+get_denuncias = requests.get("https://3618-186-232-61-4.ngrok-free.app/denuncia")
 #---------------------------------------------------------------
 app = Dash(__name__)
 
-df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminder2007.csv')
-pop = df['pop']
-country = df['country']
+df = pd.DataFrame(get_denuncias.json())
 
 app.layout = html.Div([
-    html.Div(children='Hello World'),
-    dash_table.DataTable(data=df.to_dict('records'), page_size=10),
-    dcc.Graph(figure=px.histogram(df, x='continent', y='pop', histfunc='avg'))
-])
+    html.Div([
+        html.P('Dash converts Python classes into HTML'),
+        html.P("This conversion happens behind the scenes by Dash's JavaScript front-end")
+        ], style={"padding": 100, "color": "white", "background-color": "black"}),
+    dcc.Graph(figure=px.histogram(df, x='dataDenuncia', title="Denúncias por Data").update_layout(xaxis_title="Data", yaxis_title="Número de Denúncias"), style={"padding": "0.1%", "background-color": "#9a9c9a"}),
+    dcc.Graph(figure=px.histogram(df, x='local', title="Denúncias por Local").update_layout(xaxis_title="local", yaxis_title="Número de Denúncias"), style={"padding": "0.1%", "background-color": "#9a9c9a"}),
+    dcc.Graph(figure=px.pie(df, names='local', title='Population of European continent'))
+], style={'padding':0, "margin":0})
 
 if __name__ == '__main__':
     app.run_server(debug=True)
