@@ -23,11 +23,17 @@ app = Dash(__name__)
 app.layout = html.Div([
     html.Div([
         html.H1('Dash - De Olho na Quebrada', style={'justify-content':'center'}),
-        ], style={"padding": '1%', "color": "white", "background-color": "black", 'font-size':'5rem', 'font-weight':'20rem','justify-content':'center'}),
+        ], style={"padding": '1%', "color": "#f5d4ae", "background-color": "black", 'font-size':'5rem', 'font-weight':'20rem','justify-content':'center'}),
     html.Div([
-        html.H2('Último Relato', style={'display':'flex','justify-content':'center'}),
-        html.P('"' + ultima['relato']+'"' +" - " + ultima['nome'],style={'justify-content':'center','display':'flex'})
-        ], style={"margin": '1%', "color": "black", "background-color": "white",'display':'flex','flex-direction':'column','height':'10%'}),
+        html.Div([
+            html.H2('Último Relato', style={'display':'flex','justify-content':'center'}),
+            html.P('"' + ultima['relato']+'"' +" - " + ultima['nome'],style={'justify-content':'center','display':'flex'})
+            ], style={"padding": '1%', "color": "black", "background-color": "#f5d4ae",'display':'flex','flex-direction':'column','height':'10%','width':'50%'}),
+        html.Div([
+            html.H2('Número Total de Denúncias', style={'display':'flex','justify-content':'center'}),
+            html.P(len(df),style={'justify-content':'center','display':'flex'})
+            ], style={"padding": '1%', "color": "white", "background-color": "#F4663A",'display':'flex','flex-direction':'column','height':'10%','width':'50%'})
+    ],style={'padding':0, 'margin':0,'display':'flex','flex-direction':'row','height':'10%'}),
     dcc.Graph(figure=px.histogram(df, x='dataDenuncia', title="Denúncias por Data").update_layout(xaxis_title="Data", yaxis_title="Número de Denúncias"), style={"padding-bottom": "0.1%", "background-color": "#9a9c9a"}),
     dcc.Graph(figure=px.histogram(df, x='local', title="Denúncias por Região").update_layout(xaxis_title="Região", yaxis_title="Número de Denúncias"), style={"padding-bottom": "0.1%", "background-color": "#9a9c9a"}),
     dcc.Graph(figure=px.histogram(df, x='mesDenuncia', title="Denúncias por Mes").update_layout(xaxis_title="Mês do Ano (número)", yaxis_title="Número de Denúncias"), style={"padding-bottom": "0.1%", "background-color": "#9a9c9a"}),
