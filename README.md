@@ -25,4 +25,5 @@ Dashboard para o Observatório da Quebrada e o público geral conseguirem analis
 
 ## Tecnologias
 -Dash Plotly
+
 -Python (Pandas e Requests)
