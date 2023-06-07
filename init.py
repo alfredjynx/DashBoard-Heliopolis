@@ -29,7 +29,7 @@ app.layout = html.Div([
         html.P('"' + ultima['relato']+'"' +" - " + ultima['nome'],style={'justify-content':'center','display':'flex'})
         ], style={"margin": '1%', "color": "black", "background-color": "white",'display':'flex','flex-direction':'column','height':'10%'}),
     dcc.Graph(figure=px.histogram(df, x='dataDenuncia', title="Denúncias por Data").update_layout(xaxis_title="Data", yaxis_title="Número de Denúncias"), style={"padding-bottom": "0.1%", "background-color": "#9a9c9a"}),
-    dcc.Graph(figure=px.histogram(df, x='local', title="Denúncias por Local").update_layout(xaxis_title="local", yaxis_title="Número de Denúncias"), style={"padding-bottom": "0.1%", "background-color": "#9a9c9a"}),
+    dcc.Graph(figure=px.histogram(df, x='local', title="Denúncias por Região").update_layout(xaxis_title="Região", yaxis_title="Número de Denúncias"), style={"padding-bottom": "0.1%", "background-color": "#9a9c9a"}),
     dcc.Graph(figure=px.histogram(df, x='mesDenuncia', title="Denúncias por Mes").update_layout(xaxis_title="Mês do Ano (número)", yaxis_title="Número de Denúncias"), style={"padding-bottom": "0.1%", "background-color": "#9a9c9a"}),
     dcc.Graph(figure=px.histogram(df, x='mesEnchente', title="Enchentes por Mes").update_layout(xaxis_title="Mês do Ano (número)", yaxis_title="Número de Enchentes Relatadas"), style={"padding-bottom": "0.1%", "background-color": "#9a9c9a"}),
     dcc.Graph(figure=px.pie(df, names='local', title='Porcentagem de Denúncias por Região'),style={"padding-bottom": "0.1%", "background-color": "#9a9c9a"}),
